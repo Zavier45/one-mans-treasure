@@ -43,8 +43,8 @@ public class OneMansTreasureDbContext : IdentityDbContext<IdentityUser>
 
         modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
         {
-            RoleId = "8fcdebee-7905-49a9-a3fa-66266de7f19e",
-            UserId = "26407cc2-fc74-4453-918d-4ebf00e87565"
+            RoleId = "c3aaeb97-d2ba-4a53-a521-4eea61e59b35",
+            UserId = "da2973b3-6a0e-4808-9c23-177d9ca4cddb"
         });
 
         modelBuilder.Entity<UserProfile>().HasData(new UserProfile
@@ -69,14 +69,14 @@ public class OneMansTreasureDbContext : IdentityDbContext<IdentityUser>
 
         modelBuilder.Entity<Sale>().HasData(new Sale[]
         {
-            new Sale {Id = 1, StartDate = new DateTime(2024, 9, 28, 8, 0, 0), EndDate = new DateTime(2024, 9, 29, 17, 3, 0), Address = "365 Wishing Star Way", UserId = 1}
+            new Sale {Id = 1, StartDate = new DateTime(2024, 9, 28, 8, 0, 0), EndDate = new DateTime(2024, 9, 29, 17, 3, 0), Address = "365 Wishing Star Way", SaleHostId = 1}
         });
 
         modelBuilder.Entity<SaleType>().HasData(new SaleType[]
         {
-            new SaleType {SaleId = 1, ItemTypeId = 2},
-            new SaleType {SaleId = 1, ItemTypeId = 5},
-            new SaleType {SaleId = 1, ItemTypeId = 6}
+            new SaleType {Id = 1, SaleId = 1, ItemTypeId = 2},
+            new SaleType {Id = 2, SaleId = 1, ItemTypeId = 5},
+            new SaleType {Id = 3, SaleId = 1, ItemTypeId = 6}
         });
     }
 
