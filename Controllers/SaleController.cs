@@ -28,7 +28,23 @@ public class SaleController : ControllerBase
         return Ok(_dbContext.Sales.Select(s => new SaleDTO
         {
             Id = s.Id,
-
-        }))
+            StartDate = s.StartDate,
+            EndDate = s.EndDate,
+            Address = s.Address,
+            SaleHostId = s.SaleHostId,
+            SaleHost = new UserProfileDTO
+            {
+                Id = s.SaleHost.Id,
+                FirstName = s.SaleHost.FirstName,
+                LastName = s.SaleHost.LastName,
+                Email = s.SaleHost.Email,
+                IdentityUserId = s.SaleHost.IdentityUserId,
+                IdentityUser = new IdentityUser
+                {
+                    Id = s.SaleHost.IdentityUser.Id,
+                    UserName = s.SaleHost.IdentityUser.UserName
+                }
+            }
+        }));
     }
 }
