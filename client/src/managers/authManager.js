@@ -32,8 +32,8 @@ export const register = (userProfile) => {
   formData.append("lastName", userProfile.lastName);
   formData.append("userName", userProfile.userName);
   formData.append("email", userProfile.email);
-  formData.append("password", btoa(userProfile.password));
-  // formData.append('imageLocation', userProfile.imageLocation);
+  formData.append("password", btoa(userProfile.password)); // Encode password
+
   return fetch(_apiURL + "/register", {
     credentials: "same-origin",
     method: "POST",
