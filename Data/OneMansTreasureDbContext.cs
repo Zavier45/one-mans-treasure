@@ -10,7 +10,7 @@ public class OneMansTreasureDbContext : IdentityDbContext<IdentityUser>
 {
     private readonly IConfiguration _configuration;
     public DbSet<UserProfile> UserProfiles { get; set; }
-    public DbSet<ItemType> Types { get; set; }
+    public DbSet<ItemType> ItemTypes { get; set; }
     public DbSet<Sale> Sales { get; set; }
     public DbSet<SaleType> SaleTypes { get; set; }
 
