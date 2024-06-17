@@ -10,7 +10,7 @@ public class OneMansTreasureDbContext : IdentityDbContext<IdentityUser>
 {
     private readonly IConfiguration _configuration;
     public DbSet<UserProfile> UserProfiles { get; set; }
-    public DbSet<ItemType> Types { get; set; }
+    public DbSet<ItemType> ItemTypes { get; set; }
     public DbSet<Sale> Sales { get; set; }
     public DbSet<SaleType> SaleTypes { get; set; }
 
@@ -41,12 +41,6 @@ public class OneMansTreasureDbContext : IdentityDbContext<IdentityUser>
 
         });
 
-        modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
-        {
-            RoleId = "c3aaeb97-d2ba-4a53-a521-4eea61e59b35",
-            UserId = "da2973b3-6a0e-4808-9c23-177d9ca4cddb"
-        });
-
         modelBuilder.Entity<UserProfile>().HasData(new UserProfile
         {
 
@@ -55,6 +49,12 @@ public class OneMansTreasureDbContext : IdentityDbContext<IdentityUser>
             FirstName = "Zavier",
             LastName = "Hopson"
 
+        });
+
+        modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
+        {
+            RoleId = "c3aaeb97-d2ba-4a53-a521-4eea61e59b35",
+            UserId = "da2973b3-6a0e-4808-9c23-177d9ca4cddb"
         });
 
         modelBuilder.Entity<ItemType>().HasData(new ItemType[]

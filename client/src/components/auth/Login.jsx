@@ -1,13 +1,13 @@
-import { useState } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../managers/authManager";
 import { Button, FormFeedback, FormGroup, Input, Label } from "reactstrap";
 
 export default function Login({ setLoggedInUser }) {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [failedLogin, setFailedLogin] = useState(false);
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [failedLogin, setFailedLogin] = React.useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -41,13 +41,12 @@ export default function Login({ setLoggedInUser }) {
         <Input
           invalid={failedLogin}
           type="password"
-          value={password}
           onChange={(e) => {
             setFailedLogin(false);
             setPassword(e.target.value);
           }}
         />
-        <FormFeedback>Login failed.</FormFeedback>
+        <FormFeedback>Login failed</FormFeedback>
       </FormGroup>
 
       <Button color="primary" onClick={handleSubmit}>
