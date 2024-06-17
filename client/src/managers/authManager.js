@@ -27,17 +27,14 @@ export const tryGetLoggedInUser = () => {
 };
 
 export const register = (userProfile) => {
-  const formData = new FormData();
-  formData.append("firstName", userProfile.firstName);
-  formData.append("lastName", userProfile.lastName);
-  formData.append("userName", userProfile.userName);
-  formData.append("email", userProfile.email);
-  formData.append("password", btoa(userProfile.password)); // Encode password
-
+  userProfile.password = btoa(userProfile.password);
   return fetch(_apiURL + "/register", {
     credentials: "same-origin",
     method: "POST",
-    body: formData,
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(userProfile),
   }).then((res) => {
     if (res.ok) {
       return fetch(_apiURL + "/me").then((res) => res.json());
