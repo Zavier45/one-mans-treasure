@@ -1,4 +1,4 @@
-const _apiURL = "/api/sales";
+const _apiURL = "/api/sale";
 
 export const getAllSales = () => {
   return fetch(_apiURL).then((res) => res.json());
