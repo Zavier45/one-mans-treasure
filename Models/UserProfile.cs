@@ -14,6 +14,8 @@ public class UserProfile
     public string Email { get; set; }
     public string IdentityUserId { get; set; }
     public IdentityUser IdentityUser { get; set; }
+    [NotMapped]
+    public List<string> Roles { get; set; }
     public List<Sale> Sales { get; set; }
     public string FullName
     {
