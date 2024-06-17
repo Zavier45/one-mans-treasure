@@ -1,19 +1,18 @@
-import { useState } from "react";
+import React from "react";
 import { register } from "../../managers/authManager";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, FormFeedback, FormGroup, Input, Label } from "reactstrap";
 
 export default function Register({ setLoggedInUser }) {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [userName, setUserName] = useState("");
-  const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [firstName, setFirstName] = React.useState("");
+  const [lastName, setLastName] = React.useState("");
+  const [userName, setUserName] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [confirmPassword, setConfirmPassword] = React.useState("");
+  const [errors, setErrors] = React.useState([]);
 
-  const [passwordMismatch, setPasswordMismatch] = useState();
-  const [registrationFailure, setRegistrationFailure] = useState(false);
+  const [passwordMismatch, setPasswordMismatch] = React.useState();
 
   const navigate = useNavigate();
 
@@ -28,15 +27,14 @@ export default function Register({ setLoggedInUser }) {
         lastName,
         userName,
         email,
-        address,
         password,
       };
       register(newUser).then((user) => {
-        if (user) {
+        if (user.errors) {
+          setErrors(user.errors);
+        } else {
           setLoggedInUser(user);
           navigate("/");
-        } else {
-          setRegistrationFailure(true);
         }
       });
     }
@@ -86,16 +84,6 @@ export default function Register({ setLoggedInUser }) {
         />
       </FormGroup>
       <FormGroup>
-        <Label>Address</Label>
-        <Input
-          type="text"
-          value={address}
-          onChange={(e) => {
-            setAddress(e.target.value);
-          }}
-        />
-      </FormGroup>
-      <FormGroup>
         <Label>Password</Label>
         <Input
           invalid={passwordMismatch}
@@ -108,7 +96,7 @@ export default function Register({ setLoggedInUser }) {
         />
       </FormGroup>
       <FormGroup>
-        <Label> Confirm Password</Label>
+        <Label>Confirm Password</Label>
         <Input
           invalid={passwordMismatch}
           type="password"
@@ -120,9 +108,12 @@ export default function Register({ setLoggedInUser }) {
         />
         <FormFeedback>Passwords do not match!</FormFeedback>
       </FormGroup>
-      <p style={{ color: "red" }} hidden={!registrationFailure}>
-        Registration Failure
-      </p>
+      {Array.isArray(errors) &&
+        errors.map((e, i) => (
+          <p key={i} style={{ color: "red" }}>
+            {e}
+          </p>
+        ))}
       <Button
         color="primary"
         onClick={handleSubmit}
