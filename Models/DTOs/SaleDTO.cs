@@ -8,5 +8,8 @@ public class SaleDTO
     public string Address { get; set; }
     public int SaleHostId { get; set; }
     public UserProfileDTO SaleHost { get; set; }
+    public List<SaleTypeDTO> SaleTypes { get; set; }
+    public string FormattedStartDate => StartDate.ToString("MMMM dd, yyyy");
+    public string FormattedEndDate => EndDate.ToString("MMMM dd, yyyy");
 
 }
