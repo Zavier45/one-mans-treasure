@@ -6,9 +6,9 @@ import {
   Nav,
   NavLink,
   NavItem,
-  NavBar,
-  NavBarBrand,
-  NavBarToggler,
+  Navbar,
+  NavbarBrand,
+  NavbarToggler,
 } from "reactstrap";
 import { logout } from "../managers/authManager";
 
@@ -18,13 +18,13 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
 
   return (
     <div>
-      <NavBar color="light" light fixed="true" expand="lg">
-        <NavBarBrand className="mr-auto" tag={RRNavLink} to="/">
+      <Navbar color="light" light fixed="true" expand="lg">
+        <NavbarBrand className="mr-auto" tag={RRNavLink} to="/">
           One Man's Treasure
-        </NavBarBrand>
+        </NavbarBrand>
         {loggedInUser ? (
           <>
-            <NavBarToggler onClick={toggleNavBar} />
+            <NavbarToggler onClick={toggleNavBar} />
             <Collapse isOpen={open} navbar>
               <Nav navbar>
                 <NavItem>
@@ -57,7 +57,7 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
             </NavItem>
           </Nav>
         )}
-      </NavBar>
+      </Navbar>
     </div>
   );
 }
