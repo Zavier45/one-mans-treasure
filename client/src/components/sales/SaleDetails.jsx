@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "reactstrap";
-import { getSaleById } from "../../managers/saleManager";
+import { deleteSale, getSaleById } from "../../managers/saleManager";
 import { getItemTypes } from "../../managers/itemTypeManager";
 
 export const SaleDetails = ({ loggedInUser }) => {
@@ -17,6 +17,12 @@ export const SaleDetails = ({ loggedInUser }) => {
     getItemTypes(setItemType);
   }, []);
 
+  const handleDelete = () => {
+    deleteSale(id).then(() => {
+      navigate("/sales");
+    });
+  };
+
   return (
     <>
       <div className="details-container">
@@ -30,6 +36,8 @@ export const SaleDetails = ({ loggedInUser }) => {
             <p key={st.id}>{st.itemType.name}</p>
           ))}
         </div>
+        <Button>Edit Sale</Button>
+        <Button onClick={handleDelete}>Delete Sale</Button>
       </div>
     </>
   );
