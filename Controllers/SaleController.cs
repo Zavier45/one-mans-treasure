@@ -125,4 +125,95 @@ public class SaleController : ControllerBase
     }
 
 
+    [HttpPut("{id}")]
+
+    public IActionResult Put(int id, EditSaleDTO updatedSale)
+    {
+        Sale existingSale = _dbContext.Sales
+        .FirstOrDefault(s => s.Id == id);
+        if (existingSale == null)
+        {
+            return NotFound();
+        }
+        existingSale.StartDate = updatedSale.StartDate;
+        existingSale.EndDate = updatedSale.EndDate;
+        existingSale.Address = updatedSale.Address ?? existingSale.Address;
+
+        List<SaleType> saleTypesToDelete = _dbContext.SaleTypes.Where(std => std.SaleId == id).ToList();
+        foreach (SaleType saleType in saleTypesToDelete)
+        {
+            _dbContext.SaleTypes.Remove(saleType);
+        }
+        _dbContext.SaveChanges();
+
+        foreach (int st in updatedSale.SaleTypes)
+        {
+            SaleType saleType = new SaleType
+            {
+                SaleId = id,
+                ItemTypeId = st
+            };
+            _dbContext.SaleTypes.Add(saleType);
+        }
+
+        _dbContext.SaveChanges();
+
+        return Ok(existingSale);
+
+    }
+
+    [HttpPost]
+
+    public IActionResult Post(CreateSaleDTO newSale)
+    {
+        if (string.IsNullOrEmpty(newSale.Address))
+        {
+            return BadRequest("Address is required.");
+        }
+
+        if (newSale.EndDate < newSale.StartDate)
+        {
+            return BadRequest("End Date must be after Start Date");
+        }
+        Sale createdSale = new Sale
+        {
+            StartDate = newSale.StartDate,
+            EndDate = newSale.EndDate,
+            Address = newSale.Address,
+            SaleHostId = newSale.SaleHostId
+        };
+
+        _dbContext.Sales.Add(createdSale);
+        _dbContext.SaveChanges();
+
+        foreach (int st in newSale.SaleTypes)
+        {
+            SaleType saleType = new SaleType
+            {
+                SaleId = createdSale.Id,
+                ItemTypeId = st
+            };
+            _dbContext.SaleTypes.Add(saleType);
+        }
+
+        _dbContext.SaveChanges();
+
+        return Ok();
+    }
+
+    [HttpDelete("{id}")]
+    public IActionResult Delete(int id)
+    {
+        Sale existingSale = _dbContext.Sales.FirstOrDefault(es => es.Id == id);
+        if (existingSale == null)
+        {
+            return NotFound();
+        }
+
+        _dbContext.Sales.Remove(existingSale);
+        _dbContext.SaveChanges();
+
+        return Ok();
+    }
+
 }
