@@ -32,6 +32,11 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
                     All Sales
                   </NavLink>
                 </NavItem>
+                <NavItem>
+                  <NavLink tag={RRNavLink} to="/newsale">
+                    Create a Sale
+                  </NavLink>
+                </NavItem>
               </Nav>
             </Collapse>
             <Button
