@@ -1,14 +1,14 @@
-.sale-container {
+body {
     background-color: #DEC0F1;
 }
 
-.sale-container-each {
+.sale-container {
     border: 2px black solid;
     width: 50%;
     text-align: center;
     background-color: #EFD9CE;
 }
 
-button {
+Button {
     background-color: #F4B942;
 }
