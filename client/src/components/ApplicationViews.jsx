@@ -2,9 +2,9 @@ import { Route, Routes } from "react-router-dom";
 import { AuthorizedRoute } from "./auth/AuthorizedRoute";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
-import CategoryList from "./sales/SaleList";
 import SaleList from "./sales/SaleList";
 import { SaleDetails } from "./sales/SaleDetails";
+import { NewSale } from "./sales/CreateSale";
 
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
   return (
@@ -28,6 +28,16 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
             }
           />
           <Route path=":id" element={<SaleDetails />} />
+        </Route>
+        <Route path="/newsale">
+          <Route
+            index
+            element={
+              <AuthorizedRoute loggedInUser={loggedInUser}>
+                <NewSale loggedInUser={loggedInUser} />
+              </AuthorizedRoute>
+            }
+          />
         </Route>
         <Route
           path="login"

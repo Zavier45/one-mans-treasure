@@ -7,3 +7,26 @@ export const getAllSales = () => {
 export const getSaleById = (id) => {
   return fetch(`${_apiURL}/${id}`).then((res) => res.json());
 };
+
+export const deleteSale = (id) => {
+  return fetch(`${_apiURL}/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-type": "application/json",
+    },
+  });
+};
+
+export const newSale = async (saleObj) => {
+  return await fetch(`${_apiURL}`, {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(saleObj),
+  });
+};
+
+// export const updateSale = (saleId, updateSaleObj) => {
+//   const response =
+// }
