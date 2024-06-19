@@ -54,7 +54,7 @@ export const NewSale = ({ loggedInUser }) => {
       <h1>Create a Sale</h1>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Start Date (in YYYY-MM-DD formate, please)</label>
+          <label>Start Date</label>
           <Input
             type="date"
             name="startDate"
