@@ -3,12 +3,15 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getSaleById, updateSale } from "../../managers/saleManager";
 import { getItemTypes } from "../../managers/itemTypeManager";
 import { Input, Label, Button, FormGroup } from "reactstrap";
+import "./EditSale.css";
 
 export const EditSale = () => {
   const [saleAddress, setSaleAddress] = React.useState("");
   const [saleStartDate, setSaleStartDate] = React.useState();
   const [saleEndDate, setSaleEndDate] = React.useState();
   const [saleItemTypes, setSaleItemTypes] = React.useState([]);
+  const [saleFeaturedItem, setSaleFeaturedItem] = React.useState("");
+  const [saleFeaturedItemDesc, setSaleFeaturedItemDesc] = React.useState("");
   const [itemTypes, setItemTypes] = React.useState([]);
 
   const { id } = useParams();
@@ -16,13 +19,22 @@ export const EditSale = () => {
 
   const importExistingSale = async () => {
     const editSale = await getSaleById(id);
-    const { startDate, endDate, address, saleTypes } = editSale;
+    const {
+      startDate,
+      endDate,
+      address,
+      featuredItem,
+      featuredItemDesc,
+      saleTypes,
+    } = editSale;
     const formattedStartDate = new Date(startDate).toISOString().split("T")[0];
     const formattedEndDate = new Date(endDate).toISOString().split("T")[0];
 
     setSaleStartDate(formattedStartDate);
     setSaleEndDate(formattedEndDate);
     setSaleAddress(address);
+    setSaleFeaturedItem(featuredItem);
+    setSaleFeaturedItemDesc(featuredItemDesc);
     setSaleItemTypes(saleTypes.map((it) => it.itemTypeId));
   };
 
@@ -31,6 +43,8 @@ export const EditSale = () => {
       address: saleAddress,
       startDate: saleStartDate,
       endDate: saleEndDate,
+      featuredItem: saleFeaturedItem,
+      featuredItemDesc: saleFeaturedItemDesc,
       saleTypes: saleItemTypes,
     };
     updateSale(id, saleObj);
@@ -90,6 +104,24 @@ export const EditSale = () => {
             name="address"
             value={saleAddress}
             onChange={(evt) => setSaleAddress(evt.target.value)}
+          />
+        </div>
+        <div>
+          <Label>Featured Item</Label>
+          <Input
+            type="text"
+            name="featureditem"
+            value={saleFeaturedItem}
+            onChange={(evt) => setSaleFeaturedItem(evt.target.value)}
+          />
+        </div>
+        <div>
+          <Label>Featured Item Description</Label>
+          <Input
+            type="text"
+            name="featureditemdesc"
+            value={saleFeaturedItemDesc}
+            onChange={(evt) => setSaleFeaturedItemDesc(evt.target.value)}
           />
         </div>
         <div className="d-flex flex-column">
