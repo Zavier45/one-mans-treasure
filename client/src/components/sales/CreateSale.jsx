@@ -3,12 +3,15 @@ import { Button, FormGroup, Input, Label } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 import { newSale } from "../../managers/saleManager";
 import { getItemTypes } from "../../managers/itemTypeManager";
+import "./CreateSale.css";
 
 export const NewSale = ({ loggedInUser }) => {
   const [saleObj, setSaleObj] = React.useState({
     startDate: new Date().toISOString().split("T")[0],
     endDate: new Date().toISOString().split("T")[0],
     address: "",
+    featuredItem: "",
+    featuredItemDesc: "",
     saleHostId: loggedInUser.id,
     saleTypes: [],
   });
@@ -54,7 +57,7 @@ export const NewSale = ({ loggedInUser }) => {
       <h1>Create a Sale</h1>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Start Date</label>
+          <Label>Start Date</Label>
           <Input
             type="date"
             name="startDate"
@@ -63,7 +66,7 @@ export const NewSale = ({ loggedInUser }) => {
           />
         </div>
         <div>
-          <label>End Date</label>
+          <Label>End Date</Label>
           <Input
             type="date"
             name="endDate"
@@ -72,11 +75,29 @@ export const NewSale = ({ loggedInUser }) => {
           />
         </div>
         <div>
-          <label>Address</label>
+          <Label>Address</Label>
           <Input
             type="text"
             name="address"
             value={saleObj.address}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div>
+          <Label>Featured Item</Label>
+          <Input
+            type="text"
+            name="featureditem"
+            placeholder={saleObj.featuredItem}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div>
+          <Label>Featured Item Description</Label>
+          <Input
+            type="text"
+            name="featureditemdesc"
+            placeholder={saleObj.featuredItemDesc}
             onChange={handleInputChange}
           />
         </div>

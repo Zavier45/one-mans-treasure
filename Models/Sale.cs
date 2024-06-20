@@ -12,6 +12,8 @@ public class Sale
     public DateTime EndDate { get; set; }
     [Required]
     public string Address { get; set; }
+    public string FeaturedItem { get; set; }
+    public string FeaturedItemDesc { get; set; }
     [Required]
     [ForeignKey("UserProfile")]
     public int SaleHostId { get; set; }
