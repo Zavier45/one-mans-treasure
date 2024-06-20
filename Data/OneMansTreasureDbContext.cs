@@ -69,7 +69,7 @@ public class OneMansTreasureDbContext : IdentityDbContext<IdentityUser>
 
         modelBuilder.Entity<Sale>().HasData(new Sale[]
         {
-            new Sale {Id = 1, StartDate = new DateTime(2024, 9, 28, 8, 0, 0), EndDate = new DateTime(2024, 9, 29, 17, 3, 0), Address = "365 Wishing Star Way", SaleHostId = 1}
+            new Sale {Id = 1, StartDate = new DateTime(2024, 9, 28, 8, 0, 0), EndDate = new DateTime(2024, 9, 29, 17, 3, 0), Address = "365 Wishing Star Way", FeaturedItem = "The Story of Civilization by Will & Ariel Durant", FeaturedItemDesc = "This set of 12 books explores the history of the world, from the Orient to Napoleonic France. Most of the books still possess their dust jackets, and all are in very good condition. Full set is valued at $250",SaleHostId = 1}
         });
 
         modelBuilder.Entity<SaleType>().HasData(new SaleType[]

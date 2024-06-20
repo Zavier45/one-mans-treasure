@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "reactstrap";
 import { deleteSale, getSaleById } from "../../managers/saleManager";
 import { getItemTypes } from "../../managers/itemTypeManager";
+import "./CreateSale.css";
 
 export const SaleDetails = ({ loggedInUser }) => {
   const [saleObj, setSaleObj] = React.useState({});
@@ -35,6 +36,14 @@ export const SaleDetails = ({ loggedInUser }) => {
           {saleObj.saleTypes?.map((st) => (
             <p key={st.id}>{st.itemType.name}</p>
           ))}
+          <h3>
+            Featured Sale Item:
+            <br />
+            {`${saleObj?.featuredItem}`}
+          </h3>
+          <h3>
+            Description: <br /> {`${saleObj?.featuredItemDesc}`}
+          </h3>
         </div>
         {loggedInUser.id === saleObj?.saleHostId ? (
           <div className="button">

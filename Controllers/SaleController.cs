@@ -38,6 +38,8 @@ public class SaleController : ControllerBase
             StartDate = s.StartDate,
             EndDate = s.EndDate,
             Address = s.Address,
+            FeaturedItem = s.FeaturedItem,
+            FeaturedItemDesc = s.FeaturedItemDesc,
             SaleHostId = s.SaleHostId,
             SaleHost = new UserProfileDTO
             {
@@ -93,6 +95,8 @@ public class SaleController : ControllerBase
             StartDate = sale.StartDate,
             EndDate = sale.EndDate,
             Address = sale.Address,
+            FeaturedItem = sale.FeaturedItem,
+            FeaturedItemDesc = sale.FeaturedItemDesc,
             SaleHostId = sale.SaleHostId,
             SaleHost = new UserProfileDTO
             {
@@ -138,6 +142,8 @@ public class SaleController : ControllerBase
         existingSale.StartDate = updatedSale.StartDate;
         existingSale.EndDate = updatedSale.EndDate;
         existingSale.Address = updatedSale.Address ?? existingSale.Address;
+        existingSale.FeaturedItem = updatedSale.FeaturedItem ?? existingSale.FeaturedItem;
+        existingSale.FeaturedItemDesc = updatedSale.FeaturedItemDesc ?? existingSale.FeaturedItemDesc;
 
         List<SaleType> saleTypesToDelete = _dbContext.SaleTypes.Where(std => std.SaleId == id).ToList();
         foreach (SaleType saleType in saleTypesToDelete)
@@ -180,6 +186,8 @@ public class SaleController : ControllerBase
             StartDate = newSale.StartDate,
             EndDate = newSale.EndDate,
             Address = newSale.Address,
+            FeaturedItem = newSale.FeaturedItem,
+            FeaturedItemDesc = newSale.FeaturedItemDesc,
             SaleHostId = newSale.SaleHostId
         };
 
