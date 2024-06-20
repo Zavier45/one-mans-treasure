@@ -27,6 +27,12 @@ export const newSale = async (saleObj) => {
   });
 };
 
-// export const updateSale = (saleId, updateSaleObj) => {
-//   const response =
-// }
+export const updateSale = (id, updatedSaleObj) => {
+  return fetch(`${_apiURL}/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(updatedSaleObj),
+  });
+};
