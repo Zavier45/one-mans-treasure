@@ -5,6 +5,7 @@ import Register from "./auth/Register";
 import SaleList from "./sales/SaleList";
 import { SaleDetails } from "./sales/SaleDetails";
 import { NewSale } from "./sales/CreateSale";
+import { EditSale } from "./sales/EditSale";
 
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
   return (
@@ -23,11 +24,30 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
             index
             element={
               <AuthorizedRoute loggedInUser={loggedInUser}>
-                <SaleList />
+                <SaleList loggedInUser={loggedInUser} />
               </AuthorizedRoute>
             }
           />
-          <Route path=":id" element={<SaleDetails />} />
+          <Route path=":id">
+            <Route
+              index
+              element={
+                <AuthorizedRoute loggedInUser={loggedInUser}>
+                  <SaleDetails loggedInUser={loggedInUser} />
+                </AuthorizedRoute>
+              }
+            />
+            <Route path="editsale">
+              <Route
+                index
+                element={
+                  <AuthorizedRoute loggedInUser={loggedInUser}>
+                    <EditSale loggedInUser={loggedInUser} />
+                  </AuthorizedRoute>
+                }
+              />
+            </Route>
+          </Route>
         </Route>
         <Route path="/newsale">
           <Route

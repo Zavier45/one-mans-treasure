@@ -14,6 +14,10 @@ function App() {
     });
   }, []);
 
+  if (loggedInUser === undefined) {
+    return <>Loading...</>;
+  }
+
   return (
     <>
       <NavBar loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />

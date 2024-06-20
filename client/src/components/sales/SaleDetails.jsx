@@ -36,8 +36,20 @@ export const SaleDetails = ({ loggedInUser }) => {
             <p key={st.id}>{st.itemType.name}</p>
           ))}
         </div>
-        <Button>Edit Sale</Button>
-        <Button onClick={handleDelete}>Delete Sale</Button>
+        {loggedInUser.id === saleObj?.saleHostId ? (
+          <div className="button">
+            <Button
+              onClick={() => {
+                navigate(`/sales/${saleObj.id}/editsale`);
+              }}
+            >
+              Edit Sale
+            </Button>
+            <Button onClick={handleDelete}>Delete Sale</Button>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </>
   );
