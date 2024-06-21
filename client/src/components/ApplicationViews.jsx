@@ -15,7 +15,7 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
           index
           element={
             <AuthorizedRoute loggedInUser={loggedInUser}>
-              <>Home Page</>
+              <p className="welcome">Welcome to the Hunt!</p>
             </AuthorizedRoute>
           }
         />
