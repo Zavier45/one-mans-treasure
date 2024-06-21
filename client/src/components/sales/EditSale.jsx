@@ -2,7 +2,16 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getSaleById, updateSale } from "../../managers/saleManager";
 import { getItemTypes } from "../../managers/itemTypeManager";
-import { Input, Label, Button, FormGroup } from "reactstrap";
+import {
+  Input,
+  Label,
+  Button,
+  FormGroup,
+  Form,
+  Card,
+  ButtonGroup,
+  CardHeader,
+} from "reactstrap";
 import "./EditSale.css";
 
 export const EditSale = () => {
@@ -77,71 +86,89 @@ export const EditSale = () => {
 
   return (
     <>
-      <h1>Edit Sale</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Rescheduled Start Date</label>
-          <Input
-            type="date"
-            name="startDate"
-            value={saleStartDate}
-            onChange={(evt) => setSaleStartDate(evt.target.value)}
-          />
-        </div>
-        <div>
-          <label>Rescheduled End Date</label>
-          <Input
-            type="date"
-            name="endDate"
-            value={saleEndDate}
-            onChange={(event) => setSaleEndDate(event.target.value)}
-          />
-        </div>
-        <div>
-          <label>Address</label>
-          <Input
-            type="text"
-            name="address"
-            value={saleAddress}
-            onChange={(evt) => setSaleAddress(evt.target.value)}
-          />
-        </div>
-        <div>
-          <Label>Featured Item</Label>
-          <Input
-            type="text"
-            name="featureditem"
-            value={saleFeaturedItem}
-            onChange={(evt) => setSaleFeaturedItem(evt.target.value)}
-          />
-        </div>
-        <div>
-          <Label>Featured Item Description</Label>
-          <Input
-            type="text"
-            name="featureditemdesc"
-            value={saleFeaturedItemDesc}
-            onChange={(evt) => setSaleFeaturedItemDesc(evt.target.value)}
-          />
-        </div>
-        <div className="d-flex flex-column">
-          <label>Types of Items Being Sold:</label>
-          {itemTypes.map((it) => (
-            <FormGroup key={`it-${it.id}`}>
+      <div className="edit-parent">
+        <Form onSubmit={handleSubmit}>
+          <Card
+            className="edit-form"
+            style={{
+              height: "55rem",
+              width: "55rem",
+            }}
+          >
+            <CardHeader tag="h1">Edit Sale</CardHeader>
+            <FormGroup>
+              <Label tag="h4">Rescheduled Start Date</Label>
               <Input
-                type="checkbox"
-                value={it.id}
-                checked={saleItemTypes.includes(it.id)}
-                onChange={() => {
-                  handleCheckChange(it.id);
-                }}
+                type="date"
+                name="startDate"
+                value={saleStartDate}
+                onChange={(evt) => setSaleStartDate(evt.target.value)}
               />
-              <Label>{it.name}</Label>
             </FormGroup>
-          ))}
-        </div>
-        <Button type="submit">Submit</Button>
-      </form>
+            <FormGroup>
+              <Label tag="h4">Rescheduled End Date</Label>
+              <Input
+                type="date"
+                name="endDate"
+                value={saleEndDate}
+                onChange={(event) => setSaleEndDate(event.target.value)}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label tag="h4">Address</Label>
+              <Input
+                type="text"
+                name="address"
+                value={saleAddress}
+                onChange={(evt) => setSaleAddress(evt.target.value)}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label tag="h4">Featured Item</Label>
+              <Input
+                type="text"
+                name="featureditem"
+                value={saleFeaturedItem}
+                onChange={(evt) => setSaleFeaturedItem(evt.target.value)}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label tag="h4">Featured Item Description</Label>
+              <Input
+                bsSize="lg"
+                type="textarea"
+                name="featureditemdesc"
+                value={saleFeaturedItemDesc}
+                onChange={(evt) => setSaleFeaturedItemDesc(evt.target.value)}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label tag="h4">Types of Items Being Sold:</Label>
+              {itemTypes.map((it) => (
+                <FormGroup
+                  className="edit-types"
+                  check
+                  inline
+                  key={`it-${it.id}`}
+                >
+                  <Input
+                    type="checkbox"
+                    value={it.id}
+                    checked={saleItemTypes.includes(it.id)}
+                    onChange={() => {
+                      handleCheckChange(it.id);
+                    }}
+                  />
+                  <Label check>{it.name}</Label>
+                </FormGroup>
+              ))}
+            </FormGroup>
+            <Button className="btn-edit" type="submit">
+              Submit
+            </Button>
+          </Card>
+        </Form>
+      </div>
     </>
   );
 };
