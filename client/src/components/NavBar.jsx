@@ -26,7 +26,7 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
           <>
             <NavbarToggler onClick={toggleNavBar} />
             <Collapse isOpen={open} navbar>
-              <Nav navbar>
+              <Nav tabs>
                 <NavItem>
                   <NavLink tag={RRNavLink} to="/sales">
                     All Sales
