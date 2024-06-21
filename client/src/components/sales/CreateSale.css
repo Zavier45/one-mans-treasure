@@ -1,0 +1,23 @@
+.create-parent {
+    display: flex;
+    justify-content: center;
+    background-image: url(https://janefriedman.com/wp-content/uploads/2021/04/book-sales-up-in-2020-scaled-e1618862374177-1000x652.jpeg);
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.create-form {
+    background-color: #F5DFBB;
+    margin-top: 5%;
+}
+
+.create-types {
+    align-self: center;
+}
+
+.btn-submit {
+    background-color: #7A306C;
+    margin-top: 8%;
+}
