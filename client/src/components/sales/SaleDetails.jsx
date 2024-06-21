@@ -1,9 +1,18 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Button } from "reactstrap";
+import {
+  Button,
+  ButtonGroup,
+  Card,
+  CardBody,
+  CardHeader,
+  CardTitle,
+  ListGroup,
+  ListGroupItem,
+} from "reactstrap";
 import { deleteSale, getSaleById } from "../../managers/saleManager";
 import { getItemTypes } from "../../managers/itemTypeManager";
-import "./CreateSale.css";
+import "./SaleDetails.css";
 
 export const SaleDetails = ({ loggedInUser }) => {
   const [saleObj, setSaleObj] = React.useState({});
@@ -26,39 +35,77 @@ export const SaleDetails = ({ loggedInUser }) => {
 
   return (
     <>
-      <div className="details-container">
-        <h2>Sale Details</h2>
-        <div className="single-sale-container">
-          <h3>{`Who: ${saleObj?.saleHost?.firstName} ${saleObj?.saleHost?.lastName}`}</h3>
-          <h3>{`When: ${saleObj?.formattedStartDate} through ${saleObj?.formattedEndDate}`}</h3>
-          <h3>{`Where: ${saleObj?.address}`}</h3>
-          <h3>Types of Items Being Sold:</h3>
-          {saleObj.saleTypes?.map((st) => (
-            <p key={st.id}>{st.itemType.name}</p>
-          ))}
-          <h3>
-            Featured Sale Item:
-            <br />
+      <div className="parent-details">
+        <Card
+          className="parent-card"
+          style={{
+            width: "55rem",
+            height: "55rem",
+          }}
+        >
+          <h1>Sale Details</h1>
+          <ListGroup className="detail-list">
+            <h4>Who: </h4>
+            <ListGroupItem className="list-item">
+              {`${saleObj?.saleHost?.firstName} ${saleObj?.saleHost?.lastName}`}{" "}
+            </ListGroupItem>
+            <h4>When:</h4>
+            <ListGroupItem className="list-item">
+              {" "}
+              {`${saleObj?.formattedStartDate} through ${saleObj?.formattedEndDate}`}
+            </ListGroupItem>
+            <h4>Where:</h4>
+            <ListGroupItem className="list-item">{`${saleObj?.address}`}</ListGroupItem>
+            <h4>Types of Items Being Sold:</h4>
+            <ListGroupItem className="list-item">
+              {saleObj.saleTypes?.map((st) => (
+                <p key={st.id}>{st.itemType.name}</p>
+              ))}
+            </ListGroupItem>
+          </ListGroup>
+
+          <CardHeader>
+            <h2>Featured Sale Item</h2>
+          </CardHeader>
+          <CardTitle
+            className="ft-item-name"
+            tag="h4"
+            style={{
+              width: "100%",
+            }}
+          >
             {`${saleObj?.featuredItem}`}
-          </h3>
-          <h3>
-            Description: <br /> {`${saleObj?.featuredItemDesc}`}
-          </h3>
-        </div>
-        {loggedInUser.id === saleObj?.saleHostId ? (
-          <div className="button">
-            <Button
-              onClick={() => {
-                navigate(`/sales/${saleObj.id}/editsale`);
-              }}
-            >
-              Edit Sale
-            </Button>
-            <Button onClick={handleDelete}>Delete Sale</Button>
-          </div>
-        ) : (
-          ""
-        )}
+          </CardTitle>
+
+          <CardBody>
+            <h2>
+              Description: <br />
+            </h2>
+            <h3 className="ft-item-body">{`${saleObj?.featuredItemDesc}`}</h3>
+          </CardBody>
+
+          {loggedInUser.id === saleObj?.saleHostId ? (
+            <div>
+              <ButtonGroup className="edit-group">
+                <Button
+                  className="edit"
+                  onClick={() => {
+                    navigate(`/sales/${saleObj.id}/editsale`);
+                  }}
+                >
+                  Edit Sale
+                </Button>
+              </ButtonGroup>
+              <ButtonGroup className="delete-group">
+                <Button className="delete" onClick={handleDelete}>
+                  Delete Sale
+                </Button>
+              </ButtonGroup>
+            </div>
+          ) : (
+            ""
+          )}
+        </Card>
       </div>
     </>
   );
