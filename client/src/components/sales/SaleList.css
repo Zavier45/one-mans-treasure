@@ -1,14 +1,35 @@
-body {
-    background-color: #DEC0F1;
-}
-
 .sale-container {
-    border: 2px black solid;
-    width: 50%;
-    text-align: center;
-    background-color: #EFD9CE;
+background-image: url(https://images.unsplash.com/photo-1662623646751-cfe9fb1a7309?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTA0fHxnYXJhZ2UlMjBzYWxlfGVufDB8fDB8fHww);
+height: 100vh;
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+}
+.all-sales {
+display: flex;
+justify-content: center;
 }
 
-Button {
-    background-color: #F4B942;
+.sale {
+    border-left:5px #FC7753 solid;
+    width: 100%;
+    text-align: start;
+    background-color: #EFD9CE;
+    padding: 5px 10px;
+    margin: 5%;
 }
+
+.details {
+    background-color: #FC7753;
+    margin: 3px;
+    align-content: end;
+}
+.details:hover{
+    background-color: #4059AD;
+}
+ h1 {
+    text-align: center;
+    font-family: "Rock Salt", sans-serif;
+    text-shadow: 2px 2px #EFD9CE;
+    font-weight: 600;
+ }
