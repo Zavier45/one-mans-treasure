@@ -18,7 +18,7 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
 
   return (
     <div>
-      <Navbar color="light" light fixed="true" expand="lg">
+      <Navbar color="dark" dark fixed="true" expand="lg">
         <NavbarBrand className="mr-auto" tag={RRNavLink} to="/">
           One Man's Treasure
         </NavbarBrand>
