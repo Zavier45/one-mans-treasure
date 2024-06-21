@@ -1,0 +1,23 @@
+.edit-parent {
+    display: flex;
+    justify-content: center;
+    background-image: url(https://images.unsplash.com/photo-1460058418905-d61a1b4a55fe?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjJ8fHlhcmQlMjBzYWxlfGVufDB8MHwwfHx8MA%3D%3D);
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.edit-form {
+    background-color: #D0D4DC;
+    margin-top: 5%;
+}
+
+.edit-types {
+    align-self: center;
+}
+
+.btn-edit {
+    background-color: #7A306C;
+    margin-top: 8%;
+}
