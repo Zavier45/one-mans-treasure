@@ -11,6 +11,7 @@
 .create-form {
     background-color: #F5DFBB;
     margin-top: 5%;
+    padding: 5%;
 }
 
 .create-types {
@@ -20,4 +21,8 @@
 .btn-submit {
     background-color: #7A306C;
     margin-top: 8%;
+}
+
+.btn-submit:hover {
+background-color: #f178db;
 }
