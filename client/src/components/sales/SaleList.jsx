@@ -21,7 +21,7 @@ function SaleList() {
   return (
     <>
       <div className="sale-container">
-        <h1>Sales</h1>
+        <h1 className="sale-label">Sales</h1>
         <div className="all-sales">
           <div>
             {sales.map((sale, index) => (
@@ -47,4 +47,5 @@ function SaleList() {
     </>
   );
 }
+
 export default SaleList;
