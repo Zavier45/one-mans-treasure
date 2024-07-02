@@ -2,8 +2,15 @@
   font-family: "Akronim", sans-serif;
   font-size: 150px;
   text-align: center;
-  color: #FDE8D8;
+  color: #c6671e;
   margin-top: 10%;
   text-shadow: 2px 2px black;
+  padding: 15px;
+  margin-top: 30px;
+  border-radius: 8px;
+  backdrop-filter: blur(20px);
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
