@@ -11,6 +11,7 @@
 .edit-form {
     background-color: #D0D4DC;
     margin-top: 5%;
+    padding: 5%;
 }
 
 .edit-types {
@@ -21,3 +22,7 @@
     background-color: #7A306C;
     margin-top: 8%;
 }
+
+.btn-edit:hover {
+    background-color: #f178db;
+    }
