@@ -10,23 +10,23 @@ h4 {
 }
 
 .parent-card {
-    background-color: #BEDCFE;
+    background-color: #eebb68;
     margin-top: 25px;
 }
 
 .list-item {
-    background-color: #befcfe;
     text-align: center;
+    background-color: antiquewhite;
 }
 .ft-item-name {
     padding-left: 3%;
     padding-top: 1%;
-    background-color: #befcfe;
+    background-color: antiquewhite;
 }
 
 .ft-item-body {
-    background-color: #befcfe;
-    border: 1px navy;
+    background-color: antiquewhite;
+    padding: 10px;
 }
 
 .edit-group {
