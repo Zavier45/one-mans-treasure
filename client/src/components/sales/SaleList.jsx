@@ -6,7 +6,6 @@ import "./SaleList.css";
 
 function SaleList() {
   const [sales, setSales] = React.useState([]);
-  const [error, setError] = React.useState(null);
 
   const navigate = useNavigate();
 
