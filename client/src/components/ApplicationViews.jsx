@@ -6,6 +6,7 @@ import SaleList from "./sales/SaleList";
 import { SaleDetails } from "./sales/SaleDetails";
 import { NewSale } from "./sales/CreateSale";
 import { EditSale } from "./sales/EditSale";
+import { UserSales } from "./sales/MySales";
 
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
   return (
@@ -55,6 +56,16 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
             element={
               <AuthorizedRoute loggedInUser={loggedInUser}>
                 <NewSale loggedInUser={loggedInUser} />
+              </AuthorizedRoute>
+            }
+          />
+        </Route>
+        <Route path="mysales">
+          <Route
+            index
+            element={
+              <AuthorizedRoute loggedInUser={loggedInUser}>
+                <UserSales loggedInUser={loggedInUser} />
               </AuthorizedRoute>
             }
           />
