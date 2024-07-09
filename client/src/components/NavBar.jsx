@@ -37,6 +37,11 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
                     Create a Sale
                   </NavLink>
                 </NavItem>
+                <NavItem>
+                  <NavLink tag={RRNavLink} to="/mysales">
+                    My Sales
+                  </NavLink>
+                </NavItem>
               </Nav>
             </Collapse>
             <Button
