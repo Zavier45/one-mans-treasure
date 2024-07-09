@@ -1,7 +1,7 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getAllSales } from "../../managers/saleManager";
-import { Button, ButtonGroup } from "reactstrap";
+import { Button, ButtonGroup } from "@mui/material";
 import "./SaleList.css";
 
 function SaleList() {
