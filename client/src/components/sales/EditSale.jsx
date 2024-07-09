@@ -9,7 +9,6 @@ import {
   FormGroup,
   Form,
   Card,
-  ButtonGroup,
   CardHeader,
 } from "reactstrap";
 import "./EditSale.css";
