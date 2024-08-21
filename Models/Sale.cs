@@ -1,17 +1,30 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Versioning;
 
 namespace OneMansTreasure.Models;
 
 public class Sale
 {
     public int Id { get; set; }
+    public string Title { get; set; }
     [Required]
     public DateTime StartDate { get; set; }
     [Required]
     public DateTime EndDate { get; set; }
     [Required]
-    public string Address { get; set; }
+    [ForeignKey("Neighborhood")]
+    public int NeighborhoodId { get; set; }
+
+    public Neighborhood Neighborhood { get; set; }
+    [Required]
+    public string StreetAddress { get; set; }
+    [Required]
+    public string City { get; set; }
+    [Required]
+    public string State { get; set; }
+    [Required]
+    public string ZipCode { get; set; }
     public string FeaturedItem { get; set; }
     public string FeaturedItemDesc { get; set; }
     [Required]
