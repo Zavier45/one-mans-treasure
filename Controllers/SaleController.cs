@@ -1,11 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
 using OneMansTreasure.Models;
 using OneMansTreasure.Data;
 using OneMansTreasure.Models.DTOs;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
-using System.ComponentModel;
 
 namespace OneMansTreasure.Controllers;
 
@@ -35,9 +33,19 @@ public class SaleController : ControllerBase
         List<SaleDTO> saleDTOs = sales.Select(s => new SaleDTO
         {
             Id = s.Id,
+            Title = s.Title,
             StartDate = s.StartDate,
             EndDate = s.EndDate,
-            Address = s.Address,
+            NeighborhoodId = s.NeighborhoodId,
+            Neighborhood = new NeighborhoodDTO
+            {
+                Id = s.Neighborhood.Id,
+                Name = s.Neighborhood.Name
+            },
+            StreetAddress = s.StreetAddress,
+            City = s.City,
+            State = s.State,
+            ZipCode = s.ZipCode,
             FeaturedItem = s.FeaturedItem,
             FeaturedItemDesc = s.FeaturedItemDesc,
             SaleHostId = s.SaleHostId,
@@ -92,9 +100,19 @@ public class SaleController : ControllerBase
         SaleDTO saleDTO = new SaleDTO
         {
             Id = sale.Id,
+            Title = sale.Title,
             StartDate = sale.StartDate,
             EndDate = sale.EndDate,
-            Address = sale.Address,
+            NeighborhoodId = sale.NeighborhoodId,
+            Neighborhood = new NeighborhoodDTO
+            {
+                Id = sale.Neighborhood.Id,
+                Name = sale.Neighborhood.Name
+            },
+            StreetAddress = sale.StreetAddress,
+            City = sale.City,
+            State = sale.State,
+            ZipCode = sale.ZipCode,
             FeaturedItem = sale.FeaturedItem,
             FeaturedItemDesc = sale.FeaturedItemDesc,
             SaleHostId = sale.SaleHostId,
@@ -139,9 +157,13 @@ public class SaleController : ControllerBase
         {
             return NotFound();
         }
+        existingSale.Title = updatedSale.Title ?? existingSale.Title;
         existingSale.StartDate = updatedSale.StartDate;
         existingSale.EndDate = updatedSale.EndDate;
-        existingSale.Address = updatedSale.Address ?? existingSale.Address;
+        existingSale.StreetAddress = updatedSale.StreetAddress ?? existingSale.StreetAddress;
+        existingSale.City = updatedSale.City ?? existingSale.City;
+        existingSale.State = updatedSale.State ?? existingSale.State;
+        existingSale.ZipCode = updatedSale.ZipCode ?? existingSale.ZipCode;
         existingSale.FeaturedItem = updatedSale.FeaturedItem ?? existingSale.FeaturedItem;
         existingSale.FeaturedItemDesc = updatedSale.FeaturedItemDesc ?? existingSale.FeaturedItemDesc;
 
@@ -172,7 +194,7 @@ public class SaleController : ControllerBase
 
     public IActionResult Post(CreateSaleDTO newSale)
     {
-        if (string.IsNullOrEmpty(newSale.Address))
+        if (string.IsNullOrEmpty(newSale.StreetAddress))
         {
             return BadRequest("Address is required.");
         }
@@ -183,9 +205,14 @@ public class SaleController : ControllerBase
         }
         Sale createdSale = new Sale
         {
+            Title = newSale.Title,
             StartDate = newSale.StartDate,
             EndDate = newSale.EndDate,
-            Address = newSale.Address,
+            NeighborhoodId = newSale.NeighborhoodId,
+            StreetAddress = newSale.StreetAddress,
+            City = newSale.City,
+            State = newSale.State,
+            ZipCode = newSale.ZipCode,
             FeaturedItem = newSale.FeaturedItem,
             FeaturedItemDesc = newSale.FeaturedItemDesc,
             SaleHostId = newSale.SaleHostId
