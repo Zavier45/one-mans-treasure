@@ -25,8 +25,9 @@ function SaleList() {
           <div>
             {sales.map((sale, index) => (
               <div className="sale" key={index}>
+                <p>{`${sale.title}`}</p>
                 <p>
-                  {`This sale is being held at ${sale.address} beginning on ${sale.formattedStartDate} and ending on ${sale.formattedEndDate}.`}
+                  {`This sale is being held at ${sale.streetAddress} in ${sale.city}, ${sale.state} ${sale.zipCode} in the ${sale.neighborhood} neighborhood. This sale begins on ${sale.formattedStartDate} and ends on ${sale.formattedEndDate}.`}
                 </p>
                 <ButtonGroup>
                   <Button
