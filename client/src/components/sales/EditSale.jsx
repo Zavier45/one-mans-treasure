@@ -3,14 +3,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getSaleById, updateSale } from "../../managers/saleManager";
 import { getItemTypes } from "../../managers/itemTypeManager";
 import {
-  Input,
-  Label,
-  Button,
   FormGroup,
-  Form,
+  FormLabel,
+  Button,
   Card,
   CardHeader,
-} from "reactstrap";
+  Input,
+  InputLabel,
+} from "@mui/material";
 import "./EditSale.css";
 
 export const EditSale = () => {
@@ -86,7 +86,7 @@ export const EditSale = () => {
   return (
     <>
       <div className="edit-parent">
-        <Form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <Card
             className="edit-form"
             style={{
@@ -96,7 +96,7 @@ export const EditSale = () => {
           >
             <CardHeader tag="h1">Edit Sale</CardHeader>
             <FormGroup>
-              <Label tag="h4">Rescheduled Start Date</Label>
+              <InputLabel tag="h4">Rescheduled Start Date</InputLabel>
               <Input
                 type="date"
                 name="startDate"
@@ -105,7 +105,7 @@ export const EditSale = () => {
               />
             </FormGroup>
             <FormGroup>
-              <Label tag="h4">Rescheduled End Date</Label>
+              <InputLabel tag="h4">Rescheduled End Date</InputLabel>
               <Input
                 type="date"
                 name="endDate"
@@ -114,7 +114,7 @@ export const EditSale = () => {
               />
             </FormGroup>
             <FormGroup>
-              <Label tag="h4">Address</Label>
+              <InputLabel tag="h4">Address</InputLabel>
               <Input
                 type="text"
                 name="address"
@@ -123,7 +123,7 @@ export const EditSale = () => {
               />
             </FormGroup>
             <FormGroup>
-              <Label tag="h4">Featured Item</Label>
+              <InputLabel tag="h4">Featured Item</InputLabel>
               <Input
                 type="text"
                 name="featureditem"
@@ -132,7 +132,7 @@ export const EditSale = () => {
               />
             </FormGroup>
             <FormGroup>
-              <Label tag="h4">Featured Item Description</Label>
+              <InputLabel tag="h4">Featured Item Description</InputLabel>
               <Input
                 bsSize="lg"
                 type="textarea"
@@ -142,7 +142,7 @@ export const EditSale = () => {
               />
             </FormGroup>
             <FormGroup>
-              <Label tag="h4">Types of Items Being Sold:</Label>
+              <InputLabel tag="h4">Types of Items Being Sold:</InputLabel>
               {itemTypes.map((it) => (
                 <FormGroup
                   className="edit-types"
@@ -166,7 +166,7 @@ export const EditSale = () => {
               Submit
             </Button>
           </Card>
-        </Form>
+        </form>
       </div>
     </>
   );
