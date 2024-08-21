@@ -1,15 +1,15 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
+  Card,
+  CardContent,
+  CardHeader,
   Button,
   ButtonGroup,
-  Card,
-  CardBody,
-  CardHeader,
-  CardTitle,
-  ListGroup,
-  ListGroupItem,
-} from "reactstrap";
+  Typography,
+  List,
+  ListItem,
+} from "@mui/material";
 import { deleteSale, getSaleById } from "../../managers/saleManager";
 import { getItemTypes } from "../../managers/itemTypeManager";
 import "./SaleDetails.css";
@@ -44,45 +44,45 @@ export const SaleDetails = ({ loggedInUser }) => {
           }}
         >
           <h1>Sale Details</h1>
-          <ListGroup className="detail-list">
+          <List className="detail-list">
             <h4>Who: </h4>
-            <ListGroupItem className="list-item">
+            <ListItem className="list-item">
               {`${saleObj?.saleHost?.firstName} ${saleObj?.saleHost?.lastName}`}{" "}
-            </ListGroupItem>
+            </ListItem>
             <h4>When:</h4>
-            <ListGroupItem className="list-item">
+            <ListItem className="list-item">
               {" "}
               {`${saleObj?.formattedStartDate} through ${saleObj?.formattedEndDate}`}
-            </ListGroupItem>
+            </ListItem>
             <h4>Where:</h4>
-            <ListGroupItem className="list-item">{`${saleObj?.address}`}</ListGroupItem>
+            <ListItem className="list-item">{`${saleObj?.address}`}</ListItem>
             <h4>Types of Items Being Sold:</h4>
-            <ListGroupItem className="list-item">
+            <ListItem className="list-item">
               {saleObj.saleTypes?.map((st) => (
                 <p key={st.id}>{st.itemType.name}</p>
               ))}
-            </ListGroupItem>
-          </ListGroup>
+            </ListItem>
+          </List>
 
           <CardHeader>
             <h2>Featured Sale Item</h2>
           </CardHeader>
-          <CardTitle
+          <CardContent
             className="ft-item-name"
             tag="h4"
             style={{
               width: "100%",
             }}
           >
-            {`${saleObj?.featuredItem}`}
-          </CardTitle>
+            <Typography variant="h5" component="div">
+              {`${saleObj?.featuredItem}`}
+            </Typography>
 
-          <CardBody>
             <h2>
               Description: <br />
             </h2>
             <h3 className="ft-item-body">{`${saleObj?.featuredItemDesc}`}</h3>
-          </CardBody>
+          </CardContent>
 
           {loggedInUser.id === saleObj?.saleHostId ? (
             <div>
