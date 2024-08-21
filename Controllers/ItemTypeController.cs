@@ -1,11 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
 using OneMansTreasure.Models;
 using OneMansTreasure.Data;
 using OneMansTreasure.Models.DTOs;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using System.ComponentModel;
 
 namespace OneMansTreasure.Controllers;
 
