@@ -13,6 +13,7 @@ public class OneMansTreasureDbContext : IdentityDbContext<IdentityUser>
     public DbSet<ItemType> ItemTypes { get; set; }
     public DbSet<Sale> Sales { get; set; }
     public DbSet<SaleType> SaleTypes { get; set; }
+    public DbSet<Neighborhood> Neighborhoods { get; set; }
 
     public OneMansTreasureDbContext(DbContextOptions<OneMansTreasureDbContext> context, IConfiguration config) : base(context)
     {
@@ -64,12 +65,16 @@ public class OneMansTreasureDbContext : IdentityDbContext<IdentityUser>
             new ItemType {Id = 3, Name = "Tools"},
             new ItemType {Id = 4, Name = "Furniture"},
             new ItemType {Id = 5, Name = "Books"},
-            new ItemType {Id = 6, Name = "Miscellaneous"}
+            new ItemType {Id = 6, Name = "Miscellaneous"},
+            new ItemType {Id = 7, Name = "Sports Equipment"},
+            new ItemType {Id = 8, Name = "Shoes"},
+            new ItemType {Id = 9, Name = "Baby Things"},
+            new ItemType {Id = 10, Name = "Home Decor"}
         });
 
         modelBuilder.Entity<Sale>().HasData(new Sale[]
         {
-            new Sale {Id = 1, StartDate = new DateTime(2024, 9, 28, 8, 0, 0), EndDate = new DateTime(2024, 9, 29, 17, 3, 0), Address = "365 Wishing Star Way", FeaturedItem = "The Story of Civilization by Will & Ariel Durant", FeaturedItemDesc = "This set of 12 books explores the history of the world, from the Orient to Napoleonic France. Most of the books still possess their dust jackets, and all are in very good condition. Full set is valued at $250",SaleHostId = 1}
+            new Sale {Id = 1, Title = "Bountiful Book Sale", StartDate = new DateTime(2024, 9, 28, 8, 0, 0), EndDate = new DateTime(2024, 9, 29, 17, 3, 0), NeighborhoodId = 4, StreetAddress = "1575 Foxland Blvd", City = "Gallatin", State = "Tennessee", ZipCode = "37066", FeaturedItem = "The Story of Civilization by Will & Ariel Durant", FeaturedItemDesc = "This set of 12 books explores the history of the world, from the Orient to Napoleonic France. Most of the books still possess their dust jackets, and all are in very good condition. Full set is valued at $250",SaleHostId = 1}
         });
 
         modelBuilder.Entity<SaleType>().HasData(new SaleType[]
@@ -77,6 +82,15 @@ public class OneMansTreasureDbContext : IdentityDbContext<IdentityUser>
             new SaleType {Id = 1, SaleId = 1, ItemTypeId = 2},
             new SaleType {Id = 2, SaleId = 1, ItemTypeId = 5},
             new SaleType {Id = 3, SaleId = 1, ItemTypeId = 6}
+        });
+
+        modelBuilder.Entity<Neighborhood>().HasData(new Neighborhood[]
+        {
+            new Neighborhood {Id = 1, Name = "Albion Downs"},
+            new Neighborhood {Id = 2, Name = "Shores of Lake Rise"},
+            new Neighborhood {Id = 3, Name = "Rolling Acres"},
+            new Neighborhood {Id = 4, Name = "Foxland Harbor"},
+            new Neighborhood {Id = 5, Name = "Washington Park"}
         });
     }
 
